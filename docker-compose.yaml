@@ -1,9 +1,19 @@
 version: "3.9"
 services:
   nginx:
+    # NGINX Alpine comes with 
     image: nginx:1.23.3-alpine
     restart: unless-stopped
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      # Bind docker-entrypoint file. Will append load_module (NJS) in NGNIX root config on startup
+      - ./nginx/docker-entrypoint.d/21-load-module-njs.sh:/docker-entrypoint.d/21-load-module-njs.sh:Z
+      # Bind our NGINX config file in NGINX folder, as a template. Will be binded with ENV Var by docker-entrypoint
+      - ./nginx/nginx.conf:/etc/nginx/templates/default.conf.template:ro
+      # Bind our NJS Flagship file
+      - ./nginx/njs/flagship.js:/etc/nginx/njs/flagship.js:ro
+    environment:
+      - NGINX_UPSTREAM="https://postman-echo.com/get"
+      - FS_ENV_ID="<ENV_ID>"
+      - FS_API_KEY="<API_KEY>"
     ports:
       - 80:80
