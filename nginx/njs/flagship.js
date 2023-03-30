@@ -11,7 +11,7 @@ function convertCampaignVariationIntoCacheKey(
 async function fetchExperienceCacheKey(r) {
   ngx.log(ngx.WARN, JSON.stringify(r.headersIn));
   let reply = await ngx.fetch(
-    `https://decision.flagship.io/v2/${r.headersIn["X-fs-env-id"]}/campaigns?mode=simple&exposeAllKeys=true`,
+    `https://decision.flagship.io/v2/${r.variables.fs_env_id}/campaigns?mode=simple&exposeAllKeys=true`,
     {
       method: "POST",
       body: JSON.stringify({
@@ -22,7 +22,7 @@ async function fetchExperienceCacheKey(r) {
         visitor_consent: false,
         trigger_hit: false,
       }),
-      headers: { "x-api-key": r.headersIn["X-fs-api-key"] },
+      headers: { "x-api-key": r.variables.fs_api_key },
     }
   );
 
