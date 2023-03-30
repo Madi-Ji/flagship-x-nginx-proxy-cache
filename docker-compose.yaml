@@ -16,5 +16,6 @@ services:
       - FS_ENV_ID="<ENV_ID>"
       - FS_API_KEY="<API_KEY>"
       - FS_DEFAULT_TIMEOUT=200ms
+      - FS_DEFAULT_SERVER_PORT=8079
     ports:
       - 80:80
