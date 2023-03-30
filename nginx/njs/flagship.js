@@ -38,12 +38,10 @@ async function fetchExperienceCacheKey(r) {
     );
     // Most of the Work done here.
     r.headersOut["X-fs-experiences"] = cacheKey;
-    r.return(200);
   } catch (e) {
-    r.error(e);
-    r.return(200);
+    r.error(`[Flagship] NJS Fetch encounter following error : ${e.toString()}`);
   }
-
+  r.return(204);
   return;
 }
 
