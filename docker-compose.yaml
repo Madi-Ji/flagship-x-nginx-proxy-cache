@@ -9,6 +9,7 @@ services:
       - ./nginx/docker-entrypoint.d/21-load-module-njs.sh:/docker-entrypoint.d/21-load-module-njs.sh:Z
       # Bind our NGINX config file in NGINX folder, as a template. Will be binded with ENV Var by docker-entrypoint
       - ./nginx/conf.d/default.conf:/etc/nginx/templates/default.conf.template:ro
+      - ./nginx/conf.d/flagship-dedicated-server.conf:/etc/nginx/templates/flagship-dedicated-server.conf.template:ro
       # Bind our NJS Flagship file
       - ./nginx/njs/flagship.js:/etc/nginx/njs/flagship.js:ro
     environment:
