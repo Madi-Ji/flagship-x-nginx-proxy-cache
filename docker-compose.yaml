@@ -15,5 +15,6 @@ services:
       - NGINX_UPSTREAM="https://postman-echo.com/get"
       - FS_ENV_ID="<ENV_ID>"
       - FS_API_KEY="<API_KEY>"
+      - FS_DEFAULT_TIMEOUT=200ms
     ports:
       - 80:80
