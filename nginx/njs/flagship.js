@@ -24,7 +24,9 @@ async function fetchExperienceCacheKey(r) {
           visitor_consent: false,
           trigger_hit: false,
         }),
-        headers: { "x-api-key": r.variables.fs_api_key },
+        headers: {
+          "x-api-key": r.variables.fs_api_key,
+        },
       }
     );
 
@@ -36,7 +38,7 @@ async function fetchExperienceCacheKey(r) {
       ":",
       "|"
     );
-    // Most of the Work done here.
+    // Most of the work is done here.
     r.headersOut["X-fs-experiences"] = cacheKey;
   } catch (e) {
     r.error(`[Flagship] NJS Fetch encounter following error : ${e.toString()}`);
