@@ -3,6 +3,8 @@ services:
   nginx:
     # NGINX Alpine comes with 
     image: nginx:1.23.3-alpine
+    tmpfs:
+      - /var/cache/nginx:exec
     restart: unless-stopped
     volumes:
       # Bind docker-entrypoint file. Will append load_module (NJS) in NGNIX root config on startup
