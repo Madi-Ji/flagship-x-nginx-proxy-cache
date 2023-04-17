@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   nginx:
-    # NGINX Alpine comes with 
+    # NGINX Alpine comes with build-with module, such as NJS
     image: nginx:1.23.3-alpine
     tmpfs:
       - /var/cache/nginx:exec
@@ -15,7 +15,7 @@ services:
       # Bind our NJS Flagship file
       - ./nginx/njs/flagship.js:/etc/nginx/njs/flagship.js:ro
     environment:
-      - NGINX_UPSTREAM="https://postman-echo.com/get"
+      - NGINX_UPSTREAM="https://httpbin.org/get" #delay/1
       - FS_ENV_ID="<ENV_ID>"
       - FS_API_KEY="<API_KEY>"
       - FS_TIMEOUT=200ms
