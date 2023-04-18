@@ -62,7 +62,7 @@ sequenceDiagram
     participant HTTPbin as HTTPbin Upstream
 
     User->>+NGINX: Request GET http://localhost
-    Note over NGINX: Cache Key based on Flagship SDK
+    Note over NGINX: Get Cache Key based on Flagship Decision
     NGINX->>+Internal Loopback: Subrequest to /fs-experiences
     Note over Internal Loopback: Calculate cache key from use-cases
     Internal Loopback->>+NJS: Request Decision
